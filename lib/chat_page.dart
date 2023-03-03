@@ -1,4 +1,5 @@
 import 'package:demo_v/widgets/chat_bubble.dart';
+import 'package:demo_v/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -22,18 +23,22 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                ChatBubble(
-                    alignment:Alignment.centerLeft,
-                    message:"Hello this is John!"),
-                ChatBubble(
-                    alignment:Alignment.centerRight,
-                    message:"Hi!"),
-                //TODO: Remove duplicated code
+            child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+              return ChatBubble(
+                  alignment: index % 2 == 0
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
+                  message: "Hello this is John!");
 
-                //TODO: Make it sticky
-      
+            }
+
+            ),
+          ),
+          ChatInput(),
+        ],
+      ),
     );
   }
 }
